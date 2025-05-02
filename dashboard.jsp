@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<% 
+    String msg = request.getParameter("msg");
+    if (msg != null) { 
+%>
+    <p style="color: green;"><%= msg %></p>
+<% } %>
+
+<div style="text-align: right; margin: 10px;">
+    <a href="LogoutServlet" style="color: red; text-decoration: none;">Logout</a>
+</div>
 <!DOCTYPE html>
 <html>
 <head>

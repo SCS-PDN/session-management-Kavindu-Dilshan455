@@ -11,5 +11,26 @@ public class LogoutServlet extends HttpServlet {
         // 1. Invalidate session
         // 2. Remove username cookie
         // 3. Redirect to login.html
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("user")) {
+                    cookie.setMaxAge(0); // Delete the cookie
+                    response.addCookie(cookie);
+                    break;
+                }
+            }
+        }
+
+       
+        response.sendRedirect("login.html");
+
     }
 }
